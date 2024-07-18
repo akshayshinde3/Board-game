@@ -123,7 +123,7 @@ resource "null_resource" "disable_strict_host_key_checking" {
     type        = "ssh"
     host        = aws_instance.ec2_instance[count.index].public_ip
     user        = "ubuntu"
-    private_key = file("/home/ubuntu/VM/Lab.pem")
+    private_key = file("/home/ubuntu/Mega-Project/VM/Lab.pem")
   }
 
   provisioner "remote-exec" {
@@ -146,7 +146,7 @@ resource "null_resource" "configure_ssh" {
     type        = "ssh"
     host        = aws_instance.ec2_instance[count.index].public_ip
     user        = "ubuntu"
-    private_key = file("/home/ubuntu/VM/Lab.pem")
+    private_key = file("/home/ubuntu/Mega-Project/VM/Lab.pem")
   }
 
   provisioner "file" {
