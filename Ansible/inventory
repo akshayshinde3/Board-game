@@ -1,0 +1,16 @@
+[servers]
+test-instance-1 ansible_host=18.212.231.40 ansible_user=ubuntu
+test-instance-2 ansible_host=54.167.49.128 ansible_user=ubuntu
+test-instance-3 ansible_host=18.212.205.111 ansible_user=ubuntu
+
+[jenkins]
+test-instance-1
+
+[sonarqube]
+test-instance-2
+
+[nexus]
+test-instance-3
+
+
+
