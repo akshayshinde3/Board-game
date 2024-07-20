@@ -1,4 +1,4 @@
-# Project Title: Automated CI/CD Pipeline with AWS EKS, Jenkins, and Docker
+# Project Title: Automated CI/CD Pipeline with AWS EKS, Ansible, Jenkins, and Docker
 
 ## Overview
 
