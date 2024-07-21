@@ -250,7 +250,7 @@ resource "aws_eks_node_group" "node_group" {
     }
 
     remote_access {
-        ec2_ssh_key               = "AWS"
+        ec2_ssh_key               = "${var.key_pair}"
         source_security_group_ids = [aws_security_group.eks_node_sg.id]
     }
 
