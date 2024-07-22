@@ -30,5 +30,5 @@ variable "region" {
 
 variable "key_pair" {
     description = "Key-Pair"
-    default     = "AWS"
+    type        = string
 }

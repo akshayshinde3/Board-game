@@ -1,0 +1,48 @@
+name: Apply or Destroy Strapi with Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Choose action'
+        required: true
+        default: 'apply'
+        type: choice
+        options:
+          - apply
+          - destroy
+      var_key_pair:
+        description: 'Key-Pair'
+        required: true
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Initialize Terraform
+      run: terraform init -input=false
+      working-directory: ./EKS
+
+    - name: Run Terraform Action
+      id: terraform
+      run: |
+        if [ "${{ github.event.inputs.action }}" == "apply" ]; then
+          terraform apply -auto-approve -var "key_pair=${{ github.event.inputs.var_key_pair }}"
+        elif [ "${{ github.event.inputs.action }}" == "destroy" ]; then
+          terraform destroy -auto-approve -var "key_pair=${{ github.event.inputs.var_key_pair }}"
+        fi
+      working-directory: ./EKS
