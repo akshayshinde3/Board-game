@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: boardgame
-        image: pramod858/boardshack:v6
+        image: akshay1999/boardshack:v6
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
